@@ -1,0 +1,50 @@
+<template>
+    <lightning-card title="Book Appointment" icon-name="standard:service_appointment">
+        <div class="slds-p-around_medium">
+            <lightning-input
+                label="Customer Name"
+                value={fullName}
+                onchange={handleName}
+                required>
+            </lightning-input>
+
+            <div class="slds-m-top_small">
+                <lightning-input
+                    type="datetime"
+                    label="Appointment Date/Time"
+                    value={dateTimeValue}
+                    onchange={handleDateTime}
+                    required>
+                </lightning-input>
+            </div>
+
+            <div class="slds-m-top_medium">
+                <lightning-button
+                    variant="brand"
+                    label="Book"
+                    onclick={handleBook}
+                    disabled={isLoading}>
+                </lightning-button>
+
+                <lightning-button
+                    class="slds-m-left_small"
+                    label="Clear"
+                    onclick={handleClear}
+                    disabled={isLoading}>
+                </lightning-button>
+            </div>
+
+            <template if:true={isLoading}>
+                <div class="slds-m-top_medium">
+                    <lightning-spinner alternative-text="Booking..."></lightning-spinner>
+                </div>
+            </template>
+
+            <template if:true={error}>
+                <div class="slds-m-top_medium slds-text-color_error">
+                    {error}
+                </div>
+            </template>
+        </div>
+    </lightning-card>
+</template>
